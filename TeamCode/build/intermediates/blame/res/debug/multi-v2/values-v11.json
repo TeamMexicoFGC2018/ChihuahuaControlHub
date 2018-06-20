@@ -17,6 +17,22 @@
             ]
         },
         {
+            "outputFile": "C:\\Users\\cordilleras\\Desktop\\botrregos\\codigo\\fist Global\\ChihuahuaControlHub\\TeamCode\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v11\\values-v11.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\cordilleras\\.gradle\\caches\\transforms-1\\files-1.1\\RobotCore-release.aar\\10f8399fa72e90d3afb915e9429d4d72\\res\\values-v11\\values-v11.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "4",
+                        "endColumns": "12",
+                        "endOffsets": "187"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "C:\\Users\\shager\\FG_2018_Public\\first_global_sdk\\app\\ftc_app\\TeamCode\\build\\intermediates\\res\\merged\\debug\\values-v11\\values-v11.xml",
             "map": [
                 {

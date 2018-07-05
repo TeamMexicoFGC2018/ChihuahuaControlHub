@@ -123,6 +123,44 @@ public class Tank4MotoresBerdeja extends OpMode {
         }
 
 
+        if (gamepad1.y){
+            robot.puerta.setPosition(1);
+        } else if (gamepad1.x){
+            robot.puerta.setPosition(0);
+        }
+
+        if (gamepad1.dpad_up) {
+            robot.elevador.setPower(1);
+
+        } else if (gamepad1.dpad_down){
+            robot.elevador.setPower(-1);
+
+        } else {
+            robot.elevador.setPower(0);
+        }
+
+
+            //La parte cool del morro este, Santi
+        if (gamepad2.a){
+            robot.grip.setPosition(0);
+        } else if (gamepad2.b) {
+            robot.grip.setPosition(1);
+        }
+
+        if (gamepad2.dpad_up){
+            robot.lift.setPosition(1);
+        } else if (gamepad2.dpad_down) {
+            robot.lift.setPosition(0);
+        }
+
+        if (gamepad2.x){
+            robot.eolico.setPower(1);
+        } else  if (gamepad2.y) {
+            robot.eolico.setPower(-1);
+        } else {
+            robot.eolico.setPower(0);
+        }
+        // bye bye Santi.
 
         // Output the safe vales to the motor drives.
         robot.frontLeftDrive.setPower(left);

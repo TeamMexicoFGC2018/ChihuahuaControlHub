@@ -29,8 +29,10 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -58,11 +60,11 @@ public class HardwareChassisBerdeja
     public DcMotor backRightDrive  = null;
     public DcMotor recogedorLeft  = null;
     public DcMotor recogedorRight  = null;
-
-
-    public final static double Lift2_Home = 0.2;
-    public final static double Lift1_Home = 0.2;
-
+    public DcMotor elevador = null;
+    public Servo grip = null;
+    public Servo lift = null;
+    public CRServo eolico = null;
+    public Servo puerta = null;
 
 
     /* local OpMode members. */
@@ -86,6 +88,12 @@ public class HardwareChassisBerdeja
         backRightDrive  = hwMap.get(DcMotor.class, "BR");
         recogedorRight = hwMap.get(DcMotor.class, "RR");
         recogedorLeft  = hwMap.get(DcMotor.class, "RL");
+        elevador = hwMap.get(DcMotor.class,"EL");
+        lift = hwMap.get(Servo.class,"LF");
+        grip = hwMap.get(Servo.class,"GR");
+        eolico = hwMap.get(CRServo.class, "EO");
+        puerta = hwMap.get(Servo.class,"PU");
+
 
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         backLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
@@ -93,6 +101,7 @@ public class HardwareChassisBerdeja
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         recogedorLeft.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         recogedorRight.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
+        elevador.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         frontLeftDrive.setPower(0);
@@ -101,6 +110,8 @@ public class HardwareChassisBerdeja
         backRightDrive.setPower(0);
         recogedorRight.setPower(0);
         recogedorLeft.setPower(0);
+        elevador.setPower(0);
+        eolico.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -110,7 +121,7 @@ public class HardwareChassisBerdeja
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         recogedorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         recogedorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
+        elevador.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
     public void normalize(double[] wheelSpeeds)
     {

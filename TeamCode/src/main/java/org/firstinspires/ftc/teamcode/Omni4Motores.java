@@ -54,11 +54,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 public class Omni4Motores extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareChassisHerman robot           = new HardwareChassisHerman();              // Use a K9'shardware
+    HardwareChassisHerman   robot           = new HardwareChassisHerman();              // Use a K9'shardware
 
     @Override
     public void runOpMode() {
         robot.init(hardwareMap);
+
+        double servop = robot.eject.getPosition();
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Fucking", "Nigger");    //
@@ -86,11 +88,48 @@ public class Omni4Motores extends LinearOpMode {
                robot.recogedor.setPower(0);
            }
 
+           if(gamepad1.left_bumper){
+               robot.LiftL1.setPower(-1);
+               robot.LiftL2.setPower(-1);
+               robot.LiftL3.setPower(-1);
+               robot.LiftL4.setPower(1);
+               robot.LiftL5.setPower(1);
+               robot.LiftL6.setPower(1);
+           } else if(gamepad1.right_bumper){
+               robot.LiftL1.setPower(1);
+               robot.LiftL2.setPower(1);
+               robot.LiftL3.setPower(1);
+               robot.LiftL4.setPower(-1);
+               robot.LiftL5.setPower(-1);
+               robot.LiftL6.setPower(-1);
+           } else {
+               robot.LiftL1.setPower(0);
+               robot.LiftL2.setPower(0);
+               robot.LiftL3.setPower(0);
+               robot.LiftL4.setPower(0);
+               robot.LiftL5.setPower(0);
+               robot.LiftL6.setPower(0);
+           }
+
+
+            if (gamepad1.dpad_down){
+               robot.Elevador.setPower(1);
+            } else if (gamepad1.dpad_up){
+               robot.Elevador.setPower(-1);
+            } else{
+               robot.Elevador.setPower(0);
+            }
+
+            if (gamepad1.dpad_right){
+                robot.eject.setPosition(1);
+            } else if (gamepad1.dpad_left){
+                robot.eject.setPosition(0);
+            }
 
             Mecanum(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
         }
 
-
+            telemetry.addData("servo",  "pos = %.2f", servop);
             telemetry.update();
 
         }

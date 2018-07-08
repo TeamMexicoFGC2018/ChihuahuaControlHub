@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jun 21 18:10:49 MDT 2018
+#Fri Jul 06 17:44:05 MDT 2018
 20.base=C\:\\Users\\cordilleras\\Desktop\\botrregos\\codigo\\fist Global\\ChihuahuaControlHub\\TeamCode\\build\\intermediates\\assets\\debug
 143.base=C\:\\Users\\cordilleras\\Desktop\\botrregos\\codigo\\fist Global\\ChihuahuaControlHub\\TeamCode\\build\\intermediates\\assets\\debug
 237.path=java/templates/ConceptRegisterOpModes

@@ -96,8 +96,8 @@ public class Tank4MotoresBerdeja extends OpMode {
         double angle = 0.0;
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
-        drive = -gamepad1.left_stick_y;
-        turn  =  gamepad1.right_stick_x;
+        drive = gamepad1.left_stick_y;
+        turn  =  -gamepad1.right_stick_x;
 
         // Combine drive and turn for blended motion.
         left  = drive + turn;
@@ -114,12 +114,19 @@ public class Tank4MotoresBerdeja extends OpMode {
         if(gamepad1.a) {
             robot.recogedorLeft.setPower(1);
             robot.recogedorRight.setPower(1);
+            robot.alineadorL.setPower(-1);
+            robot.alineadorR.setPower(1);
+
         } else if (gamepad1.b){
             robot.recogedorLeft.setPower(-1);
             robot.recogedorRight.setPower(-1);
+            robot.alineadorL.setPower(1);
+            robot.alineadorR.setPower(-1);
         } else {
             robot.recogedorLeft.setPower(0);
             robot.recogedorRight.setPower(0);
+            robot.alineadorL.setPower(0);
+            robot.alineadorR.setPower(0);
         }
 
 

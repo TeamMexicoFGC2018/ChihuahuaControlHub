@@ -62,7 +62,7 @@ public class HardwareChassisBerdeja
     public DcMotor recogedorRight  = null;
     public DcMotor elevador = null;
     public Servo grip = null;
-    public Servo lift = null;
+    public CRServo lift = null;
     public CRServo eolico = null;
     public Servo puerta = null;
     public CRServo alineadorL = null;
@@ -93,7 +93,7 @@ public class HardwareChassisBerdeja
         recogedorRight = hwMap.get(DcMotor.class, "RR");
         recogedorLeft  = hwMap.get(DcMotor.class, "RL");
         elevador = hwMap.get(DcMotor.class,"EL");
-        lift = hwMap.get(Servo.class,"LF");
+        lift = hwMap.get(CRServo.class,"LF");
         grip = hwMap.get(Servo.class,"GR");
         eolico = hwMap.get(CRServo.class, "EO");
         puerta = hwMap.get(Servo.class,"PU");
@@ -120,6 +120,9 @@ public class HardwareChassisBerdeja
         eolico.setPower(0);
         alineadorL.setPower(0);
         alineadorR.setPower(0);
+        lift.setPower(0);
+
+
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

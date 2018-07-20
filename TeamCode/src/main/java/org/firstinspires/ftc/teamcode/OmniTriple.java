@@ -29,6 +29,7 @@
 
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
@@ -38,8 +39,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="RoboPro", group="Iterative Opmode")
-
+@TeleOp(name="Herman", group="Iterative Opmode")
+@Disabled
 public class OmniTriple extends OpMode
 {
     // Declare OpMode members.
@@ -47,7 +48,6 @@ public class OmniTriple extends OpMode
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
     private DcMotor centreDrive = null;
-    private DcMotor elevadorDrive = null;
     private CRServo cajasDrive = null;
     public DcMotor recogedorLeft  = null;
     public DcMotor recogedorRight  = null;
@@ -66,7 +66,6 @@ public class OmniTriple extends OpMode
         leftDrive  = hardwareMap.get(DcMotor.class, "leftMotor");
         rightDrive = hardwareMap.get(DcMotor.class, "rightMotor");
         centreDrive = hardwareMap.get(DcMotor.class, "centreMotor");
-        elevadorDrive = hardwareMap.get(DcMotor.class, "motor");
         cajasDrive = hardwareMap.get(CRServo.class, "servoCajas");
         recogedorRight = hardwareMap.get(DcMotor.class, "RR");
         recogedorLeft  = hardwareMap.get(DcMotor.class, "RL");

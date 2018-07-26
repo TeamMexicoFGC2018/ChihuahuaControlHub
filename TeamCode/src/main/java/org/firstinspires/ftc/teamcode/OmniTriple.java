@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 @TeleOp(name="Herman", group="Iterative Opmode")
-@Disabled
+//@Disabled
 public class OmniTriple extends OpMode
 {
     // Declare OpMode members.
@@ -48,14 +48,15 @@ public class OmniTriple extends OpMode
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
     private DcMotor centreDrive = null;
-    private CRServo cajasDrive = null;
     public DcMotor recogedorLeft  = null;
     public DcMotor recogedorRight  = null;
     public DcMotor elevador = null;
     public Servo grip = null;
-    public Servo lift = null;
+    public CRServo lift = null;
     public CRServo eolico = null;
     public Servo puerta = null;
+    public DcMotor llantaL = null;
+    public DcMotor llantaR = null;
 
 
     //Code to run ONCE when the driver hits INIT
@@ -66,14 +67,15 @@ public class OmniTriple extends OpMode
         leftDrive  = hardwareMap.get(DcMotor.class, "leftMotor");
         rightDrive = hardwareMap.get(DcMotor.class, "rightMotor");
         centreDrive = hardwareMap.get(DcMotor.class, "centreMotor");
-        cajasDrive = hardwareMap.get(CRServo.class, "servoCajas");
         recogedorRight = hardwareMap.get(DcMotor.class, "RR");
         recogedorLeft  = hardwareMap.get(DcMotor.class, "RL");
         elevador = hardwareMap.get(DcMotor.class,"EL");
-        lift = hardwareMap.get(Servo.class,"LF");
+        lift = hardwareMap.get(CRServo.class,"LF");
         grip = hardwareMap.get(Servo.class,"GR");
         eolico = hardwareMap.get(CRServo.class, "EO");
         puerta = hardwareMap.get(Servo.class,"PU");
+        llantaL= hardwareMap.get(DcMotor.class,"LL");
+        llantaR= hardwareMap.get(DcMotor.class,"LR");
 
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -82,6 +84,9 @@ public class OmniTriple extends OpMode
         recogedorLeft.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         recogedorRight.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         elevador.setDirection(DcMotor.Direction.FORWARD);
+        eolico.setDirection(DcMotor.Direction.FORWARD);
+        llantaR.setDirection(DcMotor.Direction.FORWARD);
+        llantaL.setDirection(DcMotor.Direction.REVERSE);
 
         telemetry.addData("Status", "Initialized");
     }
@@ -107,7 +112,6 @@ public class OmniTriple extends OpMode
         double leftPower;
         double rightPower;
         double centrePower;
-        double elevadorPower;
 
         // POV Mode uses left stick to go forward, and right stick to turn.
         double drive = -gamepad1.left_stick_y;
@@ -134,12 +138,18 @@ public class OmniTriple extends OpMode
         if(gamepad1.a) {
             recogedorLeft.setPower(1);
             recogedorRight.setPower(1);
+            llantaL.setPower(1);
+            llantaR.setPower(1);
         } else if (gamepad1.b){
             recogedorLeft.setPower(-1);
             recogedorRight.setPower(-1);
+            llantaR.setPower(-1);
+            llantaL.setPower(-1);
         } else {
             recogedorLeft.setPower(0);
             recogedorRight.setPower(0);
+            llantaL.setPower(0);
+            llantaR.setPower(0);
         }
 
 
@@ -168,9 +178,11 @@ public class OmniTriple extends OpMode
         }
 
         if (gamepad2.dpad_up){
-            lift.setPosition(1);
+            lift.setPower(1);
         } else if (gamepad2.dpad_down) {
-            lift.setPosition(0);
+            lift.setPower(0);
+        } else {
+            lift.setPower(0);
         }
 
         if (gamepad2.x){
@@ -188,7 +200,6 @@ public class OmniTriple extends OpMode
         rightDrive.setPower(rightPower);
         centreDrive.setPower(centrePower);
 
-        cajasDrive.setPower(cajasPower);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());

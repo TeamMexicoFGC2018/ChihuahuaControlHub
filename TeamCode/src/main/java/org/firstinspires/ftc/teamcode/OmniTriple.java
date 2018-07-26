@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@TeleOp(name="Herman", group="Iterative Opmode")
+@TeleOp(name="Herman", group="Teleop")
 //@Disabled
 public class OmniTriple extends OpMode
 {
